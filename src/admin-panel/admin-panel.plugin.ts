@@ -1,21 +1,19 @@
 import { INestApplication } from '@nestjs/common';
 import { Database, Resource } from '@admin-bro/sequelize';
-
 import AdminBro from 'admin-bro';
-
 import * as AdminBroExpress from 'admin-bro-expressjs';
 import CategoryResource from './resources/category.resource';
+import ItemResource from './resources/item.resource';
 
 export async function setupAdminPanel(app: INestApplication): Promise<void> {
   /**
-   * Register TypeORM adapter for using
+   * Register Sequelize adapter for using
    */
   AdminBro.registerAdapter({ Database, Resource });
 
   const adminBro = new AdminBro({
-    resources: [CategoryResource],
+    resources: [CategoryResource, ItemResource],
     rootPath: '/admin',
-    logoutPath: '/admin/logout',
   });
 
   const router = AdminBroExpress.buildRouter(adminBro);

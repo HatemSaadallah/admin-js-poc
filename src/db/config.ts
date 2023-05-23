@@ -1,4 +1,4 @@
-import config from 'config/index.js';
+import config from '../../config';
 
 let databaseConfig: any;
 config.forEach(

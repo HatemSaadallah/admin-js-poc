@@ -4,7 +4,7 @@ import {
   DATABASE,
   SEQUELIZE,
 } from 'src/common/constants/application.constants';
-import { Category } from '../category/category.model';
+import { Category, Item } from '../category/models';
 
 export const databaseProviders = [
   {
@@ -13,7 +13,7 @@ export const databaseProviders = [
       const sequelize = new Sequelize({
         ...configService.get(DATABASE),
       });
-      sequelize.addModels([Category]);
+      sequelize.addModels([Category, Item]);
       return sequelize;
     },
     inject: [ConfigService],
